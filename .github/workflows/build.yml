@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test
+        run: bazel test //...
+
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure
+        run: |
+          bazel configure
+      - name: Fail if there's a git diff
+        run: |
+          if git diff --exit-code; then
+            echo "No changes ✅"
+          else
+            echo "Changes found, please run 'bazel configure' locally and push the changes"
+            exit 1
+          fi
