@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/fatih/color"
+	"fmt"
 )
 
 func main() {
-	color.Cyan("Hello, world")
+	fmt.Println("Hello, world")
 }
