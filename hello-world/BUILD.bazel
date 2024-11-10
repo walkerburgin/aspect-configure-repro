@@ -5,6 +5,7 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/walkerburgin/configure_repro/hello-world",
     visibility = ["//visibility:private"],
+    deps = ["@com_github_fatih_color//:color"],
 )
 
 go_binary(
