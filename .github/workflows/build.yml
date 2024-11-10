@@ -21,6 +21,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Debug
+        run: |
+          bazel version
+          go version
       - name: Configure
         run: |
           bazel configure
